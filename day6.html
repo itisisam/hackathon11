@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Development Course – Lecture 6 Notes</title>
+</head>
+<body>
+
+    <h1>Web Development Course – Lecture 6</h1>
+        
+    <iframe src="https://youtube.com/embed/NGYp1zCBthk?feature=shared" frameborder="1" height="250px" width="400px" allowfullscreen></iframe>
+
+    <hr>
+
+  <h1>HTML Media 🎬</h1>
+
+    <h2>The First Principle: The Web is More Than Text and Images 🖼️</h2>
+    <p>The fundamental truth is that a webpage should be able to deliver any kind of content, not just static text and pictures. For years, this was a major problem, as browsers had to rely on third-party plugins like Adobe Flash, QuickTime, or Silverlight. This was inefficient, insecure, and inconsistent across different computers. 🖥️</p>
+
+    <h2>The Core Problem</h2>
+    <p>How can we embed video and audio into a webpage in a standardized, native, and plugin-free way? We need a universal system that works on every modern browser, from a desktop PC to a mobile phone, without requiring the user to install anything extra. 📱</p>
+
+    <h2>The Logical Solution: The HTML5 <code>&lt;video&gt;</code> and <code>&lt;audio&gt;</code> Tags</h2>
+    <p>The solution was to create dedicated HTML tags whose sole purpose is to embed and control media. 📼</p>
+
+    <hr>
+
+    <h2>Part 1: The Basics - Getting a Video on the Page 🎥</h2>
+    <p>The star of the show is the <code>&lt;video&gt;</code> tag. At its simplest, it just needs to know the source of the video file.</p>
+    <pre><code>&lt;video src="my-awesome-video.mp4"&gt;&lt;/video&gt;</code></pre>
+
+    <h3>The <code>controls</code> Attribute: The Magic Switch ✨</h3>
+    <p>The problem is, without controls, you just see a static image. The solution is to add the <code>controls</code> attribute. Its mere presence turns on the browser's default player controls.</p>
+    <pre><code>&lt;video src="my-awesome-video.mp4" controls&gt;&lt;/video&gt;</code></pre>
+    <p><b>Result:</b> You now have a fully functional video player on your page! ▶️⏸️</p>
+
+    <hr>
+
+    <h2>Part 2: Intermediate - Gaining More Control with Attributes ⚙️</h2>
+    <p>You can control the video's behavior and appearance with attributes:</p>
+    <ul>
+        <li><b><code>width</code> and <code>height</code>:</b> Sets the dimensions of the player.</li>
+        <li><b><code>autoplay</code>:</b> Makes the video start playing as soon as the page loads. <b>CRITICAL CAVEAT:</b> Modern browsers will block autoplay with sound. You must add the <code>muted</code> attribute for it to work. 🔇</li>
+        <li><b><code>loop</code>:</b> Makes the video automatically restart from the beginning when it finishes. 🔁</li>
+        <li><b><code>poster</code>:</b> Specifies an image to display before the video is played, like a thumbnail. 🖼️</li>
+    </ul>
+
+    <hr>
+
+    <h2>Part 3: The <code>&lt;audio&gt;</code> Tag 🎵</h2>
+    <p>The <code>&lt;audio&gt;</code> tag works almost identically to the <code>&lt;video&gt;</code> tag, just without the visual component. You must add the <code>controls</code> attribute to display the player.</p>
+    <pre><code>&lt;p&gt;Listen to our theme song:&lt;/p&gt;
+&lt;audio src="audio/theme-song.mp3" controls&gt;&lt;/audio&gt;</code></pre>
+
+    <hr>
+
+    <h2>Part 4: Advanced & Professional - Solving Real-World Problems 🌍</h2>
+
+    <h3>Problem #1: Browser Compatibility 🌐</h3>
+    <p>Not all browsers support the same video formats. If you only provide one, some users won't be able to see your video.</p>
+    <p><b>The Solution: The <code>&lt;source&gt;</code> Element</b></p>
+    <p>Instead of putting the <code>src</code> on the <code>&lt;video&gt;</code> tag, you can provide multiple formats inside using the <code>&lt;source&gt;</code> element. The browser will play the first one it supports. This is the robust, professional way. ✅</p>
+    <pre><code>&lt;video controls poster="images/thumbnail.jpg"&gt;
+  &lt;source src="videos/my-video.webm" type="video/webm"&gt;
+  &lt;source src="videos/my-video.mp4" type="video/mp4"&gt;
+  Sorry, your browser doesn't support embedded videos.
+&lt;/video&gt;</code></pre>
+
+    <h3>Problem #2: Accessibility ♿</h3>
+    <p>Users who are deaf or hard of hearing can't understand your video. The solution is to add timed text tracks.</p>
+    <p><b>The Solution: The <code>&lt;track&gt;</code> Element</b></p>
+    <p>The <code>&lt;track&gt;</code> element allows you to add subtitles or captions that point to a special text file (.vtt). This makes your video accessible to a much wider audience. 🗣️</p>
+    <pre><code>&lt;video controls&gt;
+  &lt;source src="video.webm" type="video/webm"&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+
+  &lt;!-- English Captions for the hearing impaired --&gt;
+  &lt;track src="captions_en.vtt" kind="captions" srclang="en" label="English"&gt;
+
+  &lt;!-- Spanish Subtitles for translation --&gt;
+  &lt;track src="subtitles_es.vtt" kind="subtitles" srclang="es" label="Español"&gt;
+&lt;/video&gt;</code></pre>
+
+    <hr>
+
+    <h2>HTML Character Entities</h2>
+    <p>You can use either the entity name or the entity number to display special symbols. Both produce the exact same result. The entity name is generally easier to remember. ✨</p>
+
+    <h3>Using the Entity Name (Recommended)</h3>
+    <p><b>Code:</b> <code>&amp;copy;</code></p>
+    <p><b>Example Usage:</b></p>
+    <pre><code>&lt;footer&gt;
+    &lt;p&gt;Copyright &amp;copy; 2024 My Awesome Website. All Rights Reserved.&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+    <p><b>Renders as:</b> Copyright © 2025 My Awesome Website. All Rights Reserved.</p>
+
+    <h3>Other Common Symbol Entities You Should Know</h3>
+    <ul>
+        <li><code>&amp;reg;</code> for ® (Registered Trademark)</li>
+        <li><code>&amp;tm;</code> for ™ (Trademark)</li>
+        <li><code>&amp;lt;</code> for &lt; (Less-than)</li>
+        <li><code>&amp;gt;</code> for &gt; (Greater-than)</li>
+        <li><code>&amp;amp;</code> for & (Ampersand)</li>
+    </ul>
+    <hr>
+    <h2>Summary:--</h2>
+    <img src="media.png" height="500px" width="450px"> 
+    <br><br>
+
+
+    <a href="week1.html">GO BACK</a>
+</body>
+</html>

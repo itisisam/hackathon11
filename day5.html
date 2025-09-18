@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Development Course – Lecture 5 Notes</title>
+</head>
+<body>
+
+    <h1>Web Development Course – Lecture 5</h1>
+        
+    <iframe src="https://youtube.com/embed/a4j9R_DvZ8M?feature=shared" frameborder="1" height="250px" width="400px" allowfullscreen></iframe>
+
+    <hr>
+
+  <h1>Forms in HTML 📝</h1>
+
+    <h2>The First Principle: The Web Needs to Be a Two-Way Street ↔️</h2>
+    <p>The fundamental truth is that a website isn't just a brochure for you to read. For the web to be useful, it needs a way to <b>collect information</b> from the user and send it back to the server.</p>
+    <p>Without this, you couldn't log in, search for a video, buy a product, post a comment, or send a message. The web would be a read-only library. 📚</p>
+
+    <h2>The Core Problem</h2>
+    <p>How do we create a standardized, reliable system to:</p>
+    <ul>
+        <li>Display interactive fields for a user to fill in (text boxes, checkboxes, dropdowns).</li>
+        <li>Package the user's data neatly.</li>
+        <li>Send that package to a specific destination on a server.</li>
+        <li>Tell the server how the data is being sent.</li>
+    </ul>
+    <p>The logical solution to this entire problem is the HTML <code>&lt;form&gt;</code>. 📦</p>
+
+    <hr>
+
+    <h2>The <code>&lt;input&gt;</code> Element: The Box for Your Stuff 📥</h2>
+    <p>This is the most common form tag. It's a self-closing tag that creates an input field. Its behavior changes based on its <code>type</code> attribute.</p>
+    <p>The most basic type is <code>text</code>.</p>
+    <pre><code>&lt;form&gt;
+    &lt;input type="text"&gt;
+&lt;/form&gt;</code></pre>
+
+    <hr>
+
+    <h2>The Need for Meaning - The <code>&lt;label&gt;</code> 🏷️</h2>
+    <p><b>The Problem:</b> We have a box, but the user has no idea what they are supposed to type into it. Is it for a name? An email? A search query? The box is meaningless without a description.</p>
+    <p><b>The Solution:</b> We need to add a descriptive piece of text. The correct HTML tag for this is the <code>&lt;label&gt;</code>. It's a tag specifically designed to be the title for a form field.</p>
+    <pre><code>&lt;label&gt;First Name:&lt;/label&gt;&lt;input type="text"&gt;</code></pre>
+
+    <hr>
+
+    <h2>The Need for Connection - <code>id</code> and <code>for</code> 🔗</h2>
+    <p><b>The Problem:</b> How can we create a direct, unbreakable link between the label "First Name:" and its specific input box? We need this for usability and accessibility.</p>
+    <p><b>The Solution:</b> We use a unique <code>id</code> on the input and a matching <code>for</code> attribute on the label. This creates an explicit connection.</p>
+    <pre><code>&lt;label for="firstName"&gt;First Name:&lt;/label&gt;&lt;input type="text" id="firstName"&gt;</code></pre>
+    <p><b>Result:</b> If you click on the text "First Name:", your cursor will magically jump into the text box. 🪄</p>
+
+    <hr>
+
+    <h2>The Need for Submission - The <code>&lt;form&gt;</code> and <code>submit</code> ➡️</h2>
+    <p><b>The Problem:</b> We have fields, but no way to actually <b>submit</b> the information.</p>
+    <p><b>The Solution:</b> We wrap all form fields in a <code>&lt;form&gt;</code> tag and add a submit button, usually <code>&lt;input type="submit"&gt;</code>.</p>
+    <pre><code>&lt;form&gt;
+    &lt;label for="firstName"&gt;First Name:&lt;/label&gt;
+    &lt;input type="text" id="firstName"&gt;
+
+    &lt;br&gt;&lt;br&gt;
+
+    &lt;label for="lastName"&gt;Last Name:&lt;/label&gt;
+    &lt;input type="text" id="lastName"&gt;
+
+    &lt;br&gt;&lt;br&gt;
+
+    &lt;input type="submit"&gt;
+&lt;/form&gt;</code></pre>
+
+    <hr>
+
+    <h2>The Need for Data Identification - The <code>name</code> Attribute 🔑</h2>
+    <p><b>The Problem:</b> The <code>id</code> is for the page, but the server needs a way to identify the data. The <code>id</code> is not sent to the server.</p>
+    <p><b>The Solution:</b> We use the <code>name</code> attribute. Its purpose is to be the "data label" for the submitted value.</p>
+    <pre><code>&lt;form&gt;
+    &lt;label for="firstName"&gt;First Name:&lt;/label&gt;
+    &lt;input type="text" id="firstName" name="firstName"&gt;
+
+    &lt;br&gt;&lt;br&gt;
+
+    &lt;label for="lastName"&gt;Last Name:&lt;/label&gt;
+    &lt;input type="text" id="lastName" name="lastName"&gt;
+
+    &lt;br&gt;&lt;br&gt;
+
+    &lt;input type="submit"&gt;
+&lt;/form&gt;</code></pre>
+    <p><b>Result:</b> The server receives a package like: <code>firstName=Arjun&lastName=Kumar</code>.</p>
+
+    <hr>
+
+    <h2>The Need for "Select One" - Radio Buttons 🔘</h2>
+    <p><b>The Problem:</b> How to ask a question where the user can only choose one option?</p>
+    <p><b>The Solution:</b> Use <code>&lt;input type="radio"&gt;</code>. All radio buttons in a single group must share the same <code>name</code> attribute.</p>
+    <pre><code>&lt;label&gt;T-Shirt Size:&lt;/label&gt;&lt;br&gt;
+&lt;input type="radio" id="sizeS" name="shirtSize" value="small"&gt;&lt;label for="sizeS"&gt;Small&lt;/label&gt;&lt;br&gt;
+&lt;input type="radio" id="sizeM" name="shirtSize" value="medium"&gt;&lt;label for="sizeM"&gt;Medium&lt;/label&gt;&lt;br&gt;
+&lt;input type="radio" id="sizeL" name="shirtSize" value="large"&gt;&lt;label for="sizeL"&gt;Large&lt;/label&gt;&lt;br&gt;</code></pre>
+
+    <hr>
+
+    <h2>The Need for "Select Many" - Checkboxes ✅</h2>
+    <p><b>The Problem:</b> What if a user can choose multiple options?</p>
+    <p><b>The Solution:</b> Use <code>&lt;input type="checkbox"&gt;</code>. Checkboxes for the same question should also share the same <code>name</code>.</p>
+    <pre><code>&lt;label&gt;Pizza Toppings:&lt;/label&gt;&lt;br&gt;
+&lt;input type="checkbox" id="toppingPep" name="toppings" value="pepperoni"&gt;&lt;label for="toppingPep"&gt;Pepperoni&lt;/label&gt;&lt;br&gt;
+&lt;input type="checkbox" id="toppingMush" name="toppings" value="mushrooms"&gt;&lt;label for="toppingMush"&gt;Mushrooms&lt;/label&gt;&lt;br&gt;
+&lt;input type="checkbox" id="toppingOni" name="toppings" value="onions"&gt;&lt;label for="toppingOni"&gt;Onions&lt;/label&gt;&lt;br&gt;</code></pre>
+
+    <hr>
+
+    <h2>A Better Button - The <code>&lt;button&gt;</code> Element 👍</h2>
+    <p><b>The Problem:</b> <code>&lt;input type="submit"&gt;</code> is limited to plain text.</p>
+    <p><b>The Solution:</b> Use the <code>&lt;button&gt;</code> element, which can contain other HTML tags like <code>&lt;strong&gt;</code> or an image.</p>
+    <pre><code>&lt;!-- OLD WAY --&gt;
+&lt;input type="submit" value="Submit Your Order"&gt;
+
+&lt;!-- NEW, BETTER WAY --&gt;
+&lt;button type="submit"&gt;
+    &lt;strong&gt;Submit&lt;/strong&gt; Your Order
+&lt;/button&gt;</code></pre>
+
+    <hr>
+
+    <h2>The Need for Long-Form Text - <code>&lt;textarea&gt;</code> 💬</h2>
+    <p><b>The Problem:</b> <code>&lt;input type="text"&gt;</code> is not suitable for multi-line text.</p>
+    <p><b>The Solution:</b> Use the <code>&lt;textarea&gt;</code> tag. It's a container and uses <code>rows</code> and <code>cols</code> to define its size.</p>
+    <pre><code>&lt;label for="comments"&gt;Any special instructions?&lt;/label&gt;&lt;br&gt;
+&lt;textarea id="comments" name="comments" rows="4" cols="50"&gt;&lt;/textarea&gt;</code></pre>
+
+    <hr>
+
+    <h2>The Need for Many Options - The Dropdown (<code>&lt;select&gt;</code>) ▼</h2>
+    <p><b>The Problem:</b> A long list of radio buttons is cumbersome.</p>
+    <p><b>The Solution:</b> Use a dropdown menu created with the <code>&lt;select&gt;</code> tag, which contains multiple <code>&lt;option&gt;</code> tags.</p>
+    <pre><code>&lt;label for="country"&gt;Country:&lt;/label&gt;&lt;br&gt;
+&lt;select id="country" name="country"&gt;
+    &lt;option value=""&gt;--Please choose an option--&lt;/option&gt;
+    &lt;option value="in"&gt;India&lt;/option&gt;
+    &lt;option value="us"&gt;USA&lt;/option&gt;
+    &lt;option value="uk"&gt;United Kingdom&lt;/option&gt;
+    &lt;option value="au"&gt;Australia&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+    <hr>
+
+    <h2>More Specialized Inputs (HTML5 Power-ups) 💪</h2>
+    <p>HTML5 introduced many new <code>type</code> attributes for <code>&lt;input&gt;</code> to make forms smarter and more user-friendly.</p>
+    <ul>
+        <li><b><code>type="password"</code></b>: Masks input for sensitive information.
+            <pre><code>&lt;input type="password"&gt;</code></pre>
+        </li>
+        <li><b><code>type="number"</code></b>: Restricts input to numbers, with optional <code>min</code> and <code>max</code> attributes.
+            <pre><code>&lt;input type="number" min="18" max="99"&gt;</code></pre>
+        </li>
+        <li><b><code>type="date"</code></b>: Displays a user-friendly calendar date picker.
+            <pre><code>&lt;input type="date"&gt;</code></pre>
+        </li>
+    </ul>
+    <hr>
+    <h2>Summary:--</h2>
+    <img src="form.png" height="500px" width="450px"> 
+    <br><br>
+
+    <a href="week1.html">GO BACK</a>
+</body>
+</html>
